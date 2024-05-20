@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+import copy
 """
 This module defines FileStorage that
 serializes instances to a JSON file
@@ -32,8 +33,8 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file """
-        dic = {}
-        for key, value in self.__objects.items():
+        dic = copy.deepcopy(self.__objects)
+        for key, value in dic.items():
             dic[key] = value.to_dict()
         with open(self.__file_path, 'w') as f:
             json.dump(dic, f)

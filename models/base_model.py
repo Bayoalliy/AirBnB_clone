@@ -6,15 +6,17 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """ Defines all common attributes """
 
     def __init__(self, *args, **kwargs):
         """ constructor function """
         if kwargs:
+            f = '%Y-%m-%dT%H:%M:%S.%f'
             for key, value in kwargs.items():
                 if key == 'updated_at' or key == 'created_at':
-                    value = datetime.strptime(kwargs[key], '%Y-%m-%dT%H:%M:%S.%f')
+                    value = datetime.strptime(kwargs[key], f)
                 if key != '__class__':
                     setattr(self, key, value)
         else:
