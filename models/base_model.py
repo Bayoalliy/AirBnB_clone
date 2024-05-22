@@ -5,7 +5,6 @@ This Module defines the basemodel
 import uuid
 from datetime import datetime
 from models import storage
-from copy import deepcopy
 
 
 class BaseModel:
@@ -38,9 +37,11 @@ class BaseModel:
 
     def to_dict(self):
         """ editing the __dict__ method"""
-        dic = deepcopy(self.__dict__)
+        dic = {}
         dic['__class__'] = self.__class__.__name__
-        for key in dic:
+        for key, value in self.__dict__.items():
             if key == 'updated_at' or key == 'created_at':
-                dic[key] = dic[key].isoformat()
+                dic[key] = value.isoformat()
+            else:
+                dic[key] = value
         return dic

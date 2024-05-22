@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+from copy import deepcopy
 
 """
 This module defines FileStorage that
@@ -33,7 +34,7 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file """
-        dic = self.__objects
+        dic = deepcopy(self.__objects)
         for key, value in dic.items():
             dic[key] = value.to_dict()
         with open(self.__file_path, 'w') as f:
