@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         """ Quit command to exit the program """
         return True
 
-    def postloop(slef):
+    def postloop(self):
         print
 
     def emptyline(self):
