@@ -7,6 +7,11 @@ of the command interpreter
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import cmd
 import shlex
 
@@ -14,7 +19,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """ Entry point """
 
-    cls = ["BaseModel", "User"]
+    cls = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
     prompt = '(hbnb) '
 
     def do_quit(self, line):
@@ -36,7 +41,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
         else:
-            dic = {"BaseModel": BaseModel, "User": User}
+            dic = {"BaseModel": BaseModel, "User": User, "State": State,
+                    "City": City, "Amenity": Amenity, "Place": Place, "Review": Review}
             new_class = dic[cls_name]()
             new_class.save()
             print(new_class.id)
