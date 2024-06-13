@@ -6,6 +6,7 @@ of the command interpreter
 
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 import cmd
 import shlex
 
@@ -13,6 +14,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """ Entry point """
 
+    cls = ["BaseModel", "User"]
     prompt = '(hbnb) '
 
     def do_quit(self, line):
@@ -30,11 +32,12 @@ class HBNBCommand(cmd.Cmd):
         if not cls_name:
             print("** class name missing **")
 
-        elif cls_name != "BaseModel":
+        elif cls_name not in self.cls:
             print("** class doesn't exist **")
 
         else:
-            new_class = BaseModel()
+            dic = {"BaseModel": BaseModel, "User": User}
+            new_class = dic[cls_name]()
             new_class.save()
             print(new_class.id)
 
@@ -43,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] != "BaseModel":
+        elif args[0] not in cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -64,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] != "BaseModel":
+        elif args[0] not in cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -90,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
             print(objs_lst)
 
         else:
-            if cls_name != "BaseModel":
+            if cls_name not in cls:
                 print("** class doesn't exist **")
             else:
                 for obj_id in all_objs.keys():
@@ -103,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] != "BaseModel":
+        elif args[0] not in cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
