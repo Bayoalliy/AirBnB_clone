@@ -27,7 +27,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, cls_name):
-        if cls_name is None:
+        if not cls_name:
             print("** class name missing **")
 
         elif cls_name != "BaseModel":
@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         args = shlex.split(args)
-        if args is None:
+        if not args:
             print("** class name missing **")
 
         elif args[0] != "BaseModel":
