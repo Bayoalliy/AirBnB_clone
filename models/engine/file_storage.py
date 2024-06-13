@@ -24,7 +24,7 @@ class FileStorage:
         """ constructor function """
 
     def all(self):
-        """ returns the dictionary __objects """
+        """ returns the __objects attribute"""
         return self.__objects
 
     def new(self, obj):
