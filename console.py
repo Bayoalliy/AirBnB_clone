@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in cls:
+        elif args[0] not in self.cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in cls:
+        elif args[0] not in self.cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -93,20 +93,20 @@ class HBNBCommand(cmd.Cmd):
             print(objs_lst)
 
         else:
-            if cls_name not in cls:
+            if cls_name not in self.cls:
                 print("** class doesn't exist **")
             else:
                 for obj_id in all_objs.keys():
                     if all_objs[obj_id].__class__.__name__ == cls_name:
                         objs_lst.append(str(all_objs[obj_id]))
-                    print(objs_lst)
+                print(objs_lst)
 
     def do_update(self, args):
         args = shlex.split(args)
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in cls:
+        elif args[0] not in self.cls:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
