@@ -41,8 +41,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
         else:
-            dic = {"BaseModel": BaseModel, "User": User, "State": State,
-                    "City": City, "Amenity": Amenity, "Place": Place, "Review": Review}
+            dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                   'City': City, 'Amenity': Amenity, 'State': State,
+                   'Review': Review}
             new_class = dic[cls_name]()
             new_class.save()
             print(new_class.id)

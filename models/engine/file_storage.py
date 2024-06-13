@@ -51,8 +51,11 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
 
-        cls_dict = {"BaseModel": BaseModel, "User": User, "State": State,
-                "City": City, "Amenity": Amenity, "Place": Place, "Review": Review}
+        cls_dict = {
+                'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                'City': City, 'Amenity': Amenity, 'State': State,
+                'Review': Review
+                }
         if os.path.exists(self.__file_path):
             dic = {}
             with open(self.__file_path, 'r') as f:
