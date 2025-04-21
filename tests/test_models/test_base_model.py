@@ -1,11 +1,7 @@
-import unittestst.py
-
-
-# test_base_model.py
-
+#!/usr/bin/python3
 import unittest
 from datetime import datetime
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     def setUp(self):
