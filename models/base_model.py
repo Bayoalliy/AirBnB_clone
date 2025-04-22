@@ -3,14 +3,23 @@
 from uuid import uuid4
 import datetime
 
+
 class BaseModel():
     """
     defines all common attributes/methods for other classes"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """declares attributes"""
-        self.id = str(uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if not kwargs:
+            self.id = str(uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
+        else:
+            for key, val in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    format = "%Y-%m-%dT%H:%M:%S.%f"
+                    val = datetime.datetime.strptime(val, format)
+                if key != '__class__':
+                    setattr(self, key, val)
 
     def __str__(self):
         """prints custom string representation"""
