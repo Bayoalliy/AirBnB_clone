@@ -26,6 +26,7 @@ class TestFileStorage(unittest.TestCase):
     def test_file_path_is_string(self):
         """Test that __file_path is a string"""
         self.assertIsInstance(self.storage._FileStorage__file_path, str)
+        self.assertIsNotNone(self.storage._FileStorage__file_path)
 
     def test_objects_is_dict(self):
         """Test that __objects is a dictionary"""
