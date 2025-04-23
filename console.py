@@ -29,11 +29,11 @@ class HBNBCommand(cmd.Cmd):
     """the entry point of the command interpreter:"""
     prompt = '(hbnb) '
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         """ Quit command to exit the command interpreter """
         return True
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         """ EOF command to exit the command interpreter """
         return True
 
