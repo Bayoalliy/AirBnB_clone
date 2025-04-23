@@ -18,6 +18,19 @@ class TestFileStorage(unittest.TestCase):
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
 
+    def test_has_private_attributes(self):
+        """Test that FileStorage has private attributes __file_path and __objects"""
+        self.assertTrue(hasattr(self.storage, "_FileStorage__file_path"))
+        self.assertTrue(hasattr(self.storage, "_FileStorage__objects"))
+
+    def test_file_path_is_string(self):
+        """Test that __file_path is a string"""
+        self.assertIsInstance(self.storage._FileStorage__file_path, str)
+
+    def test_objects_is_dict(self):
+        """Test that __objects is a dictionary"""
+        self.assertIsInstance(self.storage._FileStorage__objects, dict)
+
     def test_new_adds_object(self):
         obj = BaseModel()
         self.storage.new(obj)
