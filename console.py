@@ -29,6 +29,7 @@ from models.city import City
 from models.state import State
 from models.place import Place
 from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 
@@ -39,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
     classes = {
                 'BaseModel': BaseModel, 'User': User,
                 'Place': Place, 'Amenity': Amenity,
-                'City': City, 'State': State
+                'City': City, 'State': State, 'Review': Review
                 }
 
     def do_create(self, arg):

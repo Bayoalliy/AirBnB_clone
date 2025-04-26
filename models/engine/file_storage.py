@@ -34,11 +34,12 @@ class FileStorage():
         from models.user import User
         from models.place import Place
         from models.amenity import Amenity
+        from models.review import Review
 
         classes = {
                 'BaseModel': BaseModel, 'User': User,
                 'Place': Place, 'Amenity': Amenity,
-                'City': City, 'State': State
+                'City': City, 'State': State, 'Review': Review
                 }
         tmp_obj = {}
         if os.path.exists(self.__file_path):
