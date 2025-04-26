@@ -31,14 +31,16 @@ class HBNBCommand(cmd.Cmd):
     """the entry point of the command interpreter:"""
     prompt = '(hbnb) '
 
+    classes = {'BaseModel': BaseModel, 'User': User}
+
     def do_create(self, arg):
         """command to create an object"""
         if not arg:
             print("** class name missing **")
-        elif arg != 'BaseModel':
+        elif arg not in  classes.keys():
             print("** class doesn't exist **")
         else:
-            new_obj = BaseModel()
+            new_obj = classes[arg]()
             new_obj.save()
             print(new_obj.id)
 
@@ -53,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
 
-        elif line[0] != 'BaseModel':
+        elif line[0] not in classes.keys():
             print("** class doesn't exist **")
 
         elif len(line) < 2:
@@ -76,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] != 'BaseModel':
+        elif args[0] not in classes.keys():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -104,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] != 'BaseModel':
+        elif args[0] not in classes.keys():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -138,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances
         based or not on the class name."""
         if arg:
-            if arg == 'BaseModel':
+            if arg in classes.keys():
                 for val in storage.all().values():
                     if val.to_dict()['__class__'] == arg:
                         print(val)

@@ -29,9 +29,13 @@ class FileStorage():
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.user import User
+
+        classes = {'BaseModel': BaseModel, 'User': User}
         tmp_obj = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as f:
                 tmp_obj = json.load(f)
             for key, val in tmp_obj.items():
-                self.__objects[key] = BaseModel(**val)
+                cls_name = val['__class__']
+                self.__objects[key] = classes[cls_name](**val)
