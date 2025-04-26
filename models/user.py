@@ -15,6 +15,7 @@ Update your command interpreter (console.py) to allow show,
 create, destroy, update and all used with User
 """
 from models.base_model import BaseModel
+from models import storage
 
 
 class User(BaseModel):

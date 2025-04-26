@@ -24,6 +24,7 @@ Your code should not be executed when imported
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -37,10 +38,10 @@ class HBNBCommand(cmd.Cmd):
         """command to create an object"""
         if not arg:
             print("** class name missing **")
-        elif arg not in  classes.keys():
+        elif arg not in  self.classes.keys():
             print("** class doesn't exist **")
         else:
-            new_obj = classes[arg]()
+            new_obj = self.classes[arg]()
             new_obj.save()
             print(new_obj.id)
 
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
 
-        elif line[0] not in classes.keys():
+        elif line[0] not in self.classes.keys():
             print("** class doesn't exist **")
 
         elif len(line) < 2:
@@ -78,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in classes.keys():
+        elif args[0] not in self.classes.keys():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -106,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in classes.keys():
+        elif args[0] not in self.classes.keys():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -140,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances
         based or not on the class name."""
         if arg:
-            if arg in classes.keys():
+            if arg in self.classes.keys():
                 for val in storage.all().values():
                     if val.to_dict()['__class__'] == arg:
                         print(val)
