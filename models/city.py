@@ -20,5 +20,3 @@ class City(BaseModel):
     """inherits from BaseModel and defines the city object"""
     name = ""
     state_id = ""
-
-

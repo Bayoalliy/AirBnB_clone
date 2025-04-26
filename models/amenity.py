@@ -18,5 +18,3 @@ from models import storage
 class Amenity(BaseModel):
     """inherits from BaseModel and defines the Amenity object"""
     name = ""
-
-

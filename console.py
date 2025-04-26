@@ -32,13 +32,17 @@ class HBNBCommand(cmd.Cmd):
     """the entry point of the command interpreter:"""
     prompt = '(hbnb) '
 
-    classes = {'BaseModel': BaseModel, 'User': User}
+    classes = {
+                'BaseModel': BaseModel, 'User': User,
+                'Place': Place, 'Amenity': Amenity,
+                'City': City, 'State': State
+                }
 
     def do_create(self, arg):
         """command to create an object"""
         if not arg:
             print("** class name missing **")
-        elif arg not in  self.classes.keys():
+        elif arg not in self.classes.keys():
             print("** class doesn't exist **")
         else:
             new_obj = self.classes[arg]()

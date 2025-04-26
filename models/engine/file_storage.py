@@ -29,9 +29,18 @@ class FileStorage():
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.base_model import City
+        from models.base_model import State
+        from models.base_model import User
+        from models.base_model import Place
+        from models.base_model import Amenity
         from models.user import User
 
-        classes = {'BaseModel': BaseModel, 'User': User}
+        classes = {
+                'BaseModel': BaseModel, 'User': User,
+                'Place': Place, 'Amenity': Amenity,
+                'City': City, 'State': State
+                }
         tmp_obj = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as f:

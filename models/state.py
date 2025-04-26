@@ -19,5 +19,3 @@ from models import storage
 class State(BaseModel):
     """inherits from BaseModel and defines the state object"""
     name = ""
-
-
