@@ -45,10 +45,14 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         """parsing command line arguments"""
-        if line.endswith('all()'):
+        if line.endswith('()'):
             args = line.split('.')
             return args[1].rstrip('()') + ' ' + args[0]
-        return line 
+        return line
+
+    def do_count(self, arg):
+        """prints the number of instances of a class"""
+        print(len([i for i in storage.all().keys() if i.startswith(arg)]))
 
     def do_create(self, arg):
         """command to create an object"""
