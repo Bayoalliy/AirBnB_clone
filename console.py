@@ -43,6 +43,13 @@ class HBNBCommand(cmd.Cmd):
                 'City': City, 'State': State, 'Review': Review
                 }
 
+    def precmd(self, line):
+        """parsing command line arguments"""
+        if line.endswith('all()'):
+            args = line.split('.')
+            return args[1].rstrip('()') + ' ' + args[0]
+        return line 
+
     def do_create(self, arg):
         """command to create an object"""
         if not arg:
