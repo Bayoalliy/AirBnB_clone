@@ -51,7 +51,8 @@ class HBNBCommand(cmd.Cmd):
             cmd_cls_name = args[0].split('.')
             real_line.append(cmd_cls_name[1])
             real_line.append(cmd_cls_name[0])
-            real_line.append(args[1].strip(')').strip('"'))
+            arg_1 = args[1].strip(')').strip('"')
+            real_line.append(' '.join(arg_1.split(', ')))
 
             return ' '.join(real_line)
         return line
@@ -128,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file)."""
         args = line.split()
         if len(args) > 1:
-            key = args[0] + '.' + args[1]
+            key = args[0] + '.' + args[1].strip('"')
 
         if not args:
             print("** class name missing **")
@@ -149,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
 
         else:
-            key = args[0] + '.' + args[1]
+            key = args[0] + '.' + args[1].strip('"')
             obj = storage.all()[key]
             args[3] = args[3].strip('"')
             try:
@@ -160,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
                 except ValueError:
                     pass
 
-            setattr(obj, args[2], args[3])
+            setattr(obj, args[2].strip('"'), args[3])
 
     def do_all(self, arg):
         """
