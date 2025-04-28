@@ -45,9 +45,15 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         """parsing command line arguments"""
-        if line.endswith('()'):
-            args = line.split('.')
-            return args[1].rstrip('()') + ' ' + args[0]
+        if line.endswith(')'):
+            real_line = []
+            args = line.split('(')
+            cmd_cls_name = args[0].split('.')
+            real_line.append(cmd_cls_name[1])
+            real_line.append(cmd_cls_name[0])
+            real_line.append(args[1].strip(')').strip('"'))
+
+            return ' '.join(real_line)
         return line
 
     def do_count(self, arg):
