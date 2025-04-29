@@ -51,10 +51,18 @@ class HBNBCommand(cmd.Cmd):
             cmd_cls_name = args[0].split('.')
             real_line.append(cmd_cls_name[1])
             real_line.append(cmd_cls_name[0])
-            arg_1 = args[1].strip(')').strip('"')
-            real_line.append(' '.join(arg_1.split(', ')))
-
-            return ' '.join(real_line)
+            arg_1 = args[1].strip(')')
+            if arg_1.endswith('}'):
+                real_line.append(arg_1.split(',')[0])
+                for i in arg_1.split('{')[1].strip('}').split(','):
+                    name = ' ' + i.split(':')[0].strip('"').strip("'")
+                    value = i.split(':')[1].strip('"').strip("'")
+                    print(' '.join(real_line) + name + value)
+                    self.onecmd(' '.join(real_line) + name +  value)
+                return ' '
+            else:
+                real_line.append(' '.join(arg_1.split(', ')))
+                return ' '.join(real_line)
         return line
 
     def do_count(self, arg):
